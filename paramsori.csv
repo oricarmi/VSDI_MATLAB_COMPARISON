@@ -1,0 +1,24 @@
+method,parameter,textval,numval
+experiment,circshift responseSig (default: 17),,0
+preprocess params,filter,high,
+preprocess params,cutoff,,0.8
+preprocess params,whiten,,1
+preprocess params,normalization,z,
+postprocess params,gaussfltSTD,,0.2
+postprocess params,medFiltSize,,[3 4]
+postprocess params,normalization,minmax,
+AOF params,numFramesFrom,,10
+AOF params,numFramesUntil,,30
+GLM params,oscillatory noise freqs,,[0.78  2.7 3.3 4.8]
+Tmax params,threshold,,0
+TSCA params,oscillatory noise freqs,,[0.78  2.7 3.3 4.8]
+TSCA params,oscillatory noise bandwidths,,0.1
+TSCA params,oscillatory noise harmonics,,3
+TSCA params,oscillatory noise harmonics weights,,[1 0.1 0.1]
+TSCA params,gammas (first is signal),,[1  -0.25 -0.05]
+TSCA params,numProjections,,100
+TSCA params,reduceComp (SVD before TSCA),,1
+Nadav params,p,,[]
+Nadav params,x,,0.2
+Nadav params,t limits,,[0.1 0.3]
+Nadav params,settle,,3 50
