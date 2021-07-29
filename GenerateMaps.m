@@ -72,14 +72,14 @@ catch
     defineParameters("C:\Users\Ori\Desktop\Ori\2nd degree\matlab codez\vsdi - matlab\VSDI-MATLAB\paramsori.csv",what,rshp(Z)); % lab pc
 end
 % ---->
-ZZ = preProcess(Z);
+ZZ = preProcess(Z); % preprocess the raw signal
 implay(rshp(ZZ),20); % play video
-[ZZZ,ZZZZ,ZZZZZ,beta] = GLM_VSDI(ZZ,[0.78 3.3 6.6],params.experiment.theoreticalSigs');
+[ZZZ,ZZZZ,ZZZZZ,beta] = GLM_VSDI(ZZ,[0.78 3.3 6.6],params.experiment.theoreticalSigs'); % GLM method
 params.experiment.ZZ = ZZ; params.experiment.ZZZ = ZZZ;
-mapGLM = postProcess(rshp([beta(end-(params.experiment.N-1):end,:)]'));
-mapAOF = AvgOfFrms(rshp(ZZ));
-mapTmax = Tmax(ZZ); 
-mapCorr = Correlation2All(ZZ);
-[mapTSCAboth] = genTSCA(ZZ,ZZZ);
-mapTSCA = mapTSCAboth.withGLM;
-mapNadav = MPT(ZZ);
+mapGLM = postProcess(rshp([beta(end-(params.experiment.N-1):end,:)]')); % post process GLM map
+mapAOF = AvgOfFrms(rshp(ZZ)); % AOF method
+mapTmax = Tmax(ZZ);  % Tmax method
+mapCorr = Correlation2All(ZZ); % corr method
+[mapTSCAboth] = genTSCA(ZZ,ZZZ); % tsca method (with and without GLM, returns 2 maps)
+mapTSCA = mapTSCAboth.withGLM; 
+mapNadav = MPT(ZZ); % MPT method

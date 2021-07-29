@@ -12,10 +12,10 @@ function [retinotopicMap,retinotopicMap2,maxind] = retinotopicMapFromIndividualM
             pTile = 90;
             manualSelection = 0;  
     end
-    if iscell(maps)
+    if iscell(maps) % if the input is a cell make it a 3d matrix
         maps = cat(3,maps{:});
     end
-    if manualSelection
+    if manualSelection % if the ROI is manually selected
         tempmaps = maps; clear maps; 
         for i=1:size(tempmaps,3) % min max norm the maps so that maximum is the same height (scaling)
             maps(:,:,i) = tempmaps(manualSelection(2):manualSelection(2)+manualSelection(4),manualSelection(1):manualSelection(1)+manualSelection(3),i);
@@ -52,7 +52,7 @@ function [retinotopicMap,retinotopicMap2,maxind] = retinotopicMapFromIndividualM
         retinotopicMap2 = squeeze(retinotopicMap); retinotopicMap2(sum(retinotopicMap2,2)==0,:) = tempbrn(sum(retinotopicMap2,2)==0,:); % make brain background instead of black
         maxind = rshp(maxind);
         maxind(sum(rshp(retinotopicMap),3)==0)=0;
-        if weights
+        if weights % plot retinotopic map according to the experiment
             figure("name",sprintf('retMap %s',Ttle));
             imf2(retinotopicMap2);
             if contains(Ttle,'nad','IgnoreCase',true)
@@ -60,7 +60,7 @@ function [retinotopicMap,retinotopicMap2,maxind] = retinotopicMapFromIndividualM
             end
             title(Ttle);
     %         figure;imagesc(reshape(retinotopicMap2,size(map,1),size(map,2),3));title(Ttle); 
-            colorz = hsv2rgb([1:params.experiment.N]./params.experiment.N,ones(1,params.experiment.N),ones(1,params.experiment.N));
+            colorz = hsv2rgb([1:params.experiment.N]./params.experiment.N,ones(1,params.experiment.N),ones(1,params.experiment.N)); % transfrom hsv to rgb. hue - maxind (the stimulus this pixel corresponds to), value - how strong it responded to the stimulus it corresponds to (saturation is the same for all)
             figure("name",sprintf('colorCode %s', Ttle))
             switch params.experiment.what  
                 case 8 % loc 8

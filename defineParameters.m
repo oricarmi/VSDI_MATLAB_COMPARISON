@@ -1,5 +1,5 @@
 function defineParameters(paramsFilePath,what,Z)
-% Create parameters of this experiment
+% Create user defined parameters of this experiment
     global params
     params = struct('experiment',struct,'pre',struct,'post',struct,'AOF',struct,'GLM',struct,'Tmax',struct,'TSCA',struct,'Nadav',struct);
     params.experiment.T = size(Z,3);

@@ -1,3 +1,4 @@
+% do a cluster similarity comparison on the simulated data
 for i=1:5
     thisMap = signals(i).space;
     [row,col] = find(thisMap>prctile(reshape(thisMap,[],1),97));

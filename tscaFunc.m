@@ -21,7 +21,7 @@ if isvector(X.time)
 else
     Cx = X.time;
 end
-Cy = zeros(size(Cx,1),size(Cx,2),length(Y));
+Cy = zeros(size(Cx,1),size(Cx,2),length(Y)); % autocorrelation matricies of noise
 for i=1:length(Y) % autocorrelation matrices of noise
     if isvector(Y(i).time) % if it is a time vector, estimate autocorrelation matrix
         if isrow(Y(i).time)
@@ -58,7 +58,7 @@ else % perform svd to reduce computation time
 	W=W(:,Ind);
     components = U*W;
 end
-components=components.*repmat(sign(mean(components)),size(components,1),1);
+components=components.*repmat(sign(mean(components)),size(components,1),1); % sign of components
 if nargin>4 && toProject>0 % project the data on components
     projected = components(:,1:toProject)'*Z;
     if isvector(X.time)

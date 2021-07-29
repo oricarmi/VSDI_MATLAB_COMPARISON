@@ -2,21 +2,6 @@ function [TSCAwGLM,TSCAnoGLM,Tmax,AOF,Corr,GLM,Nadav] = performanceRealData(resu
 % Get the performance measures of each individual map and combined
 % retinotopic map
 global params
-%     setOptimalMaps = input('set Optimal Maps? [0/1]');
-%     if ~isfield(params.experiment,'optimalMaps') || setOptimalMaps
-%         params.experiment.optimalMaps.orig = zeros(size(result.TSCA.maps)); 
-%         params.experiment.optimalMaps.ROI = zeros(size(result.TSCA.maps)); 
-%         params.experiment.optimalMaps.offROI = zeros(size(result.TSCA.maps));
-%         implay(params.experiment.Z);
-%         for i=1:params.experiment.N % iterate the number of maps and create original, roi and offroi by hand
-%             frame = input("select frame for this stimulus: "); % select frame for this stimulus
-%             while frame<0 || frame>params.experiment.T % while it is not a logical frame, ask for new frame
-%                 frame = input("select frame for this stimulus: ");
-%             end
-%             [params.experiment.optimalMaps.orig(:,:,i),params.experiment.optimalMaps.ROI(:,:,i),params.experiment.optimalMaps.offROI(:,:,i)] = createOrig(params.experiment.Z(:,:,frame));
-%             params.experiment.optimalMaps.orig(:,:,i) = MinMaxNorm(params.experiment.optimalMaps.orig(:,:,i)); % rescale to [0,1]
-%         end
-%     end
     fn = fieldnames(result);
     performances = cell(1,length(fn)); 
     for i=1:length(fn) % iterate the methods 
